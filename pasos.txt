@@ -1,0 +1,62 @@
+1. cd carpeta ApiCliente
+2. git init
+3. npm init -y (crea proyecto npm node -y por defecto)
+4. cambio d carpeta cd ApiPago y hago lo mismo git init, npm init -y
+5. cambio d carpeta cd ApiReserva y hago lo mismo git init, npm init -y
+6. 5. cambio d carpeta cd ApiVuelo y hago lo mismo git init, npm init -y
+7. en ApiVuelo instalo express: npm install --save express (SE DEBE INSTALAR EN TODAS LAS CARPETAS)
+8. en ApiVuelo instalo cors: npm install --save cors---ENCABEZADOS, sin los ENCABEZADOS NO SE PUEDE HACER COMUNICACIÓN CON EL backend, ya q son las cabeceras d las peticiones (SE DEBE INSTALAR EN TODAS LAS CARPETAS)
+9. en ApiVuelo instalo path: npm install --save path  , es dónde llegan las peticiones (SE DEBE INSTALAR EN TODAS LAS CARPETAS)
+10. en ApiVuelo instalo body-parser: npm install --save body-parser    , manipula el cuerpo q lleva la petición y la idea es pasarle al JSON q lo hace el body-parser (SE DEBE INSTALAR EN TODAS LAS CARPETAS)
+11. misma ApiVuelo creo .gitignore #json locks
+package-lock.json
+
+# dependencies este deshabilito los archivos de la carpeta
+node_modules/
+y archivo index.js ----> aquí se traba todo lo de expresss, se exporta = q en mongo || const express = require("+nombre q vamos a manejar") const cors = require("cors")
+const body_parse =require("body-parse") const path = require("path")
+
+12. // llamado a la función express const app = express
+13. cambio d puerto const port = 8081
+14. app.use(cors()) // usar cors en el aplicativo 
+15. app.use(body_parse.json())// usar body-parse con cualquier dato json q llegue
+16.  programación funcional 4/11/2022       // función .post 04/11/2022
+                                            app.post("/",
+                                                (req, res) => {
+                                                    console.log("Recibimos petición ") 
+                                                    console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
+                                                    res.send("Finaliza")
+                                                }
+                                            )
+
+
+                                            // función .put 04/11/2022
+                                            app.put("/",
+                                                (req, res) => {
+                                                    console.log("Recibimos petición ") 
+                                                    console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
+                                                    res.send("Finaliza")
+                                                }
+                                            )
+
+                                            // función .patch 04/11/2022
+
+                                            app.patch("/",
+                                                (req, res) => {
+                                                    console.log("Recibimos petición ") 
+                                                    console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
+                                                    res.send("Finaliza")
+                                                }
+                                            )
+
+                                            // función .delete 04/11/2022
+                                            app.delete("/",
+                                                    (req, res) => {
+                                                    console.log("Recibimos petición ") 
+                                                    console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
+                                                    res.send("Finaliza")
+                                                }
+                                            )
+17.lógica d negocio en otro archivo por ende se crea archivo VueloService.js (simula los datos)
+18. nuevo archivo vuelos.json (datos json)
+19. en archivo index.js   const vuelosService = require("./VueloService.js")                 res.send(vuelosService.vuelosgetExport()) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
