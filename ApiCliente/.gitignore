@@ -1,0 +1,9 @@
+
+# dependencies
+/node_modules
+
+#json locks
+package-lock.json
+
+# dependencies este deshabilito los archivos de la carpeta
+node_modules/
