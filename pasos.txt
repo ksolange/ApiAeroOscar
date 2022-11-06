@@ -60,3 +60,11 @@ const body_parse =require("body-parse") const path = require("path")
 17.lógica d negocio en otro archivo por ende se crea archivo VueloService.js (simula los datos)
 18. nuevo archivo vuelos.json (datos json)
 19. en archivo index.js   const vuelosService = require("./VueloService.js")                 res.send(vuelosService.vuelosgetExport()) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
+
+__________-
+clase 05/11/2022
+1. creacion get + id
+2. creación contenido d ApiReserva, ApiPago, ApiCliente
+3. creación archivo sh (subirapis.sh)  se ejecuta = q el node index.js ---> sh subirapis.sh
+4. vídeo 00:22:33 postman trae un vuelo en específico concatenando id ---?id + CM se hace en postman en params  se coloca la llave el valor  (se específica) CMD1 eje 
+5. en la carpeta ApiReserva axios ---- npm install axios
