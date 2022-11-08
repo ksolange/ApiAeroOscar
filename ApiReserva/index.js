@@ -21,8 +21,17 @@ app.get(pathName,        // función .get
     }
 )
 
+app.get(pathName + "/pendientes/idcliente",       // función .get 08//11 pendientes d pago por idcliente o idvuelo
+    (req, res) => {
+        console.log("Recibimos petición") 
+        console.log(req)
+        idcliente = req.query.id
+        res.send(reservasService.reservasPendientesIdgetExport(id))
+    }
+)
+
 // función .post 04/11/2022 00:17:29 
-app.post(pathName,
+app.post(pathName,  
     async (req, res) => {
         console.log("Recibimos petición") 
         console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
@@ -43,11 +52,11 @@ app.put(pathName,
 
 // función .patch 04/11/2022
 
-app.patch(pathName,
+app.patch(pathName + "/reservas/estado", // modificado 08/11
     (req, res) => {
         console.log("Recibimos petición") 
         console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
-        res.send("Finaliza")
+        res.send(reservasService.setEstadoReservaExport(req.body))
     }
 )
 

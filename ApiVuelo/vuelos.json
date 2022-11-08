@@ -5,14 +5,14 @@
         "destino":"Medellín",
         "fecha": "2022-11-05 11:00:00",
         "valor": 100000,
-        "silla":[   
+        "sillas":[   
             {
-                "categoría":"económica",
-                "sillas":100
+                "categoria":"economica",
+                "silla":100
             },
             {
-                "categoría":"ejecutiva",
-                "sillas":100
+                "categoria":"ejecutiva",
+                "silla":100
             }
         ]
     },
@@ -22,14 +22,14 @@
         "destino":"Medellín",
         "fecha": "2022-11-04 08:00:00",
         "valor": 110000,
-        "silla":[   
+        "sillas":[   
             {
-                "categoría":"económica",
-                "sillas":100
+                "categoria":"economica",
+                "silla":100
             },
             {
-                "categoría":"ejecutiva",
-                "sillas":100
+                "categoria":"ejecutiva",
+                "silla":100
             }
         ]
     },
@@ -39,14 +39,14 @@
         "destino":"Medellín",
         "fecha": "2022-11-06 11:00:00",
         "valor": 300000,
-        "silla":[   
+        "sillas":[   
             {
-                "categoría":"económica",
-                "sillas":100
+                "categoria":"economica",
+                "silla":100
             },
             {
-                "categoría":"ejecutiva",
-                "sillas":100
+                "categoria":"ejecutiva",
+                "silla":100
             }
         ]
     },
@@ -56,14 +56,14 @@
         "destino":"Medellín",
         "fecha": "2022-11-10 11:00:00",
         "valor": 300000,
-        "silla":[   
+        "sillas":[   
             {
-                "categoría":"económica",
-                "sillas":100
+                "categoria":"economica",
+                "silla":100
             },
             {
-                "categoría":"ejecutiva",
-                "sillas":100
+                "categoria":"ejecutiva",
+                "silla":100
             }
         ]
     }

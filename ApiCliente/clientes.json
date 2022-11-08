@@ -1,58 +1,18 @@
 [
     {
-        "id":"BM01",
-        "origen":"Bogotá",
-        "destino":"Medellín",
-        "fecha": "2022-11-05 11:00:00",
-        "valor": 100000,
-        "silla":[   
-        
-            {
-                "categoría":"ejecutiva",
-                "sillas":100
-            }
-        ]
+        "id":"01",
+        "nombre":"persona1"
     },
     {
-        "id":"CM01",
-        "origen":"Cali",
-        "destino":"Medellín",
-        "fecha": "2022-11-04 08:00:00",
-        "valor": 110000,
-        "silla":[   
-          
-            {
-                "categoría":"ejecutiva",
-                "sillas":100
-            }
-        ]
+        "id":"02",
+        "nombre":"persona2"
     },
     {
-        "id":"PM01",
-        "origen":"Pasto",
-        "destino":"Medellín",
-        "fecha": "2022-11-06 11:00:00",
-        "valor": 300000,
-        "silla":[   
-           
-            {
-                "categoría":"ejecutiva",
-                "sillas":100
-            }
-        ]
+        "id":"03",
+        "nombre":"persona3"
     },
     {
-        "id":"LM01",
-        "origen":"Leticia",
-        "destino":"Medellín",
-        "fecha": "2022-11-10 11:00:00",
-        "valor": 300000,
-        "silla":[   
-           
-            {
-                "categoría":"ejecutiva",
-                "sillas":100
-            }
-        ]
+        "id":"04",
+        "nombre":"persona4"
     }
 ]

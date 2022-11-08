@@ -21,15 +21,14 @@ app.get(pathName,        // función .get
     }
 )
 
-/* función .get/id 05/11/2022
-/*app.get(pathName + "/id",
+// función .get 08/11/2022
+app.get(pathName + "/id",
     (req, res) => {
         console.log("Recibimos petición") 
-        let id = req.query.id
-        console.log(id)
-        res.send(clientesService.clientesgetidExport(id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export clientesService.clientesgetExport 04/11/2022
+        let id = req.query.id // se recibe el id del cliente
+        res.send(clientesService.clientesgetIdExport(id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export clientesService.clientesgetExport 04/11/2022
     }
-)*/
+)
 
 
 

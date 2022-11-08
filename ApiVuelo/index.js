@@ -21,6 +21,18 @@ app.get(pathName,        // función .get
     }
 )
 
+// función .get/id 05/11/2022
+app.get(pathName + "/id",
+    (req, res) => {
+        console.log("Recibimos petición") 
+        let id = req.query.id
+        console.log(id)
+        res.send(vuelosService.vuelosgetidExport(req.query.id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
+    }
+)
+
+
+
 // función .post 04/11/2022 00:17:29 
 app.post(pathName,
     (req, res) => {
@@ -48,6 +60,15 @@ app.patch(pathName,
         console.log("Recibimos petición") 
         console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
         res.send("Finaliza")
+    }
+)
+
+app.patch(pathName + "sillas", // 08/11
+    (req, res) => {
+        console.log("reserva sillas")
+        console.log(req.body)
+        id = req.query.id
+        res.send(vuelosService.sillasReservadasExport(req.body,id))
     }
 )
 
