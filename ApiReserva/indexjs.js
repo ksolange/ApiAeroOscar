@@ -2,44 +2,41 @@ const express = require("express")
 const cors = require("cors")
 const body_parser = require("body-parser")
 const path = require("path")
-const pagosService = require("./pagoService.js")
+const reservasService = require("./reservaService.js")
 
 // llamado a la función express
 const app = express()
-const port = 8083
+const port = 8082
 
 app.use(cors()) // usar cors en el aplicativo 
 app.use(body_parser.json())// usar body-parse con cualquier dato json q llegue
 
-const pathName = "/pagos";
+const pathName = "/reservas";
 
-app.get(pathName,        // función .get con asyn y await 10/11
-    async (req, res) => {
+app.get(pathName,        // función .get
+    (req, res) => {
         console.log("Recibimos petición") 
-        console.log(req.query.idclient) // 2. 10/11
-        res.send(await pagosService.pagosgetExport(req.query.idclient)) //3- 10/11
+        console.log(req)
+        res.send(reservasService.reservasgetExport()) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export reservasService.reservasgetExport 04/11/2022
     }
 )
 
-/* función .get/id 05/11/2022
-app.get(pathName + "/id",
+app.get(pathName + "/pendientes/idcliente",       // función .get 08//11 pendientes d pago por idcliente o idvuelo
     (req, res) => {
         console.log("Recibimos petición") 
-        let id = req.query.id
-        console.log(id)
-        res.send(pagosService.pagosgetidExport(id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export pagosService.pagosgetExport 04/11/2022
+        console.log(req)
+        idcliente = req.query.id
+        res.send(reservasService.reservasPendientesIdgetExport(id))
     }
-)*/
+)
 
-
-
-// función .post 04/11/2022 00:17:29 
-app.post(pathName,
-    (req, res) => {
+// función .post ESTE LE MODIFIQ PERO ESTABA = Q LOS DEMÁS SIN ASYNC Y SIN  AWAIT
+app.post(pathName,  
+    async (req, res) => {
         console.log("Recibimos petición") 
         console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
-        let pagos = pagosService.pagosSetExport(req.body) // 2. llamado a la funcion setExportpagosService.SetExport le envío request body 
-        res.send({"mensaje": "el pago esta staging", "pagos":pagos})
+        let reservas = await reservasService.reservasSetExport(req.body) // 2. llamado a la funcion setExportreservasService.SetExport le envío request body /// se debe hacer un await como en el otro archivo
+        res.send({"mensaje": "el reserva esta staging", "reservas":reservas})
     }
 )
 
@@ -55,11 +52,11 @@ app.put(pathName,
 
 // función .patch 04/11/2022
 
-app.patch(pathName,
+app.patch(pathName + "/reservas/estado", // modificado 08/11
     (req, res) => {
         console.log("Recibimos petición") 
         console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
-        res.send("Finaliza")
+        res.send(reservasService.setEstadoReservaExport(req.body))
     }
 )
 
@@ -69,8 +66,8 @@ app.delete(pathName,
         console.log("Recibimos petición ") 
         let id = req.query.id
         console.log(id) // ya no viene vacío con ese req. viene enriquecido del body
-        let pagos = pagosService.pagosDeleteExport(id)
-        res.send({"mensaje": "el pago esta staging", "pagos":pagos})
+        let reservas = reservasService.reservasDeleteExport(id)
+        res.send({"mensaje": "el reserva esta staging", "reservas":reservas})
     }
 )
 

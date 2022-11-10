@@ -1,6 +1,18 @@
 [
     {
-        "id":"BM01",
+        "_id":"BM01",
+        "estadoPago": "Pendiente"
+    },
+    {
+        "_id":"CM01",
+        "estadoPago": "Pendiente"
+    },
+    {
+        "_id":"PM01",
+        "estadoPago": "Pendiente"
+    },
+    {
+        "_id":"LM01",
         "estadoPago": "Pendiente"
     }
 ]

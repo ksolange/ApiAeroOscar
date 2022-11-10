@@ -23,10 +23,10 @@ app.get(pathName,        // función .get
 
 // función .get 08/11/2022
 app.get(pathName + "/id",
-    (req, res) => {
+    async (req, res) => {
         console.log("Recibimos petición") 
         let id = req.query.id // se recibe el id del cliente
-        res.send(clientesService.clientesgetIdExport(id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export clientesService.clientesgetExport 04/11/2022
+        res.send(await clientesService.clientesgetIdExport(id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export clientesService.clientesgetExport 04/11/2022
     }
 )
 

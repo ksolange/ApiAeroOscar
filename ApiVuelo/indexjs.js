@@ -2,34 +2,34 @@ const express = require("express")
 const cors = require("cors")
 const body_parser = require("body-parser")
 const path = require("path")
-const pagosService = require("./pagoService.js")
+const vuelosService = require("./VueloService.js")
 
 // llamado a la función express
 const app = express()
-const port = 8083
+const port = 8081
 
 app.use(cors()) // usar cors en el aplicativo 
 app.use(body_parser.json())// usar body-parse con cualquier dato json q llegue
 
-const pathName = "/pagos";
+const pathName = "/vuelos";
 
-app.get(pathName,        // función .get con asyn y await 10/11
-    async (req, res) => {
+app.get(pathName,        // función .get
+    (req, res) => {
         console.log("Recibimos petición") 
-        console.log(req.query.idclient) // 2. 10/11
-        res.send(await pagosService.pagosgetExport(req.query.idclient)) //3- 10/11
+        console.log(req)
+        res.send(vuelosService.vuelosgetExport()) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
     }
 )
 
-/* función .get/id 05/11/2022
+// función .get/id 05/11/2022
 app.get(pathName + "/id",
     (req, res) => {
         console.log("Recibimos petición") 
         let id = req.query.id
         console.log(id)
-        res.send(pagosService.pagosgetidExport(id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export pagosService.pagosgetExport 04/11/2022
+        res.send(vuelosService.vuelosgetidExport(req.query.id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
     }
-)*/
+)
 
 
 
@@ -38,8 +38,8 @@ app.post(pathName,
     (req, res) => {
         console.log("Recibimos petición") 
         console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
-        let pagos = pagosService.pagosSetExport(req.body) // 2. llamado a la funcion setExportpagosService.SetExport le envío request body 
-        res.send({"mensaje": "el pago esta staging", "pagos":pagos})
+        let vuelos = vuelosService.vuelosSetExport(req.body) // 2. llamado a la funcion setExportvuelosService.SetExport le envío request body 
+        res.send({"mensaje": "el vuelo esta staging", "vuelos":vuelos})
     }
 )
 
@@ -63,14 +63,23 @@ app.patch(pathName,
     }
 )
 
+app.patch(pathName + "/sillas", // 08/11
+    (req, res) => {
+        console.log("reserva sillas")
+        console.log(req.body)
+        id = req.query.id
+        res.send(vuelosService.sillasReservadasExport(req.body,id))
+    }
+)
+
 // función .delete 04/11/2022
 app.delete(pathName,
         (req, res) => {
         console.log("Recibimos petición ") 
         let id = req.query.id
         console.log(id) // ya no viene vacío con ese req. viene enriquecido del body
-        let pagos = pagosService.pagosDeleteExport(id)
-        res.send({"mensaje": "el pago esta staging", "pagos":pagos})
+        let vuelos = vuelosService.vuelosDeleteExport(id)
+        res.send({"mensaje": "el vuelo esta staging", "vuelos":vuelos})
     }
 )
 

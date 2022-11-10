@@ -1,15 +1,24 @@
-// simula los datos
 
-let pagos = require("./pagos.json")
-let request = require("axios")
+const getMongo = require("./mongodb.js") //1. 09/11/2022
+let request = require("axios")  // 05/11/2022 request es solicitud q se hace
 
-const pagosGet = () => {
-    
-    return pagos
+const pagosGet = async (idclient) => { //4. 10/11
+    const nameDb = "aerolineaG1y2" // 2.10/11
+    const client =  await getMongo.getClientExport(nameDb) 
+    const collection = await getMongo.getCollectionExport(client,nameDb) 
 
+    const pagos = collection.find({"idclient":idclient}) // NO _id.. porq a este se les envía un objeto a != d bd
+    const pagosList = await pagos.toArray() //llama a la función 
+
+    await getMongo.closeClientExport(client)      
+    return pagosList
 }
 
-const pagosSet = (pago) => {  // 4/11/2022 se esta trabajando en forma d memoria con una variable  llamada pagos y cargo datos require el archivo json 
+const pagosSet = async (pago) => {  // 1.10/11
+    const nameDb = "aerolineaG1y2" // 2.10/11
+    const client =  await getMongo.getClientExport(nameDb) 
+    const collection = await getMongo.getCollectionExport(client,nameDb) 
+
     if(pago.estado == "Aprobado"){
         const reserva = request.patch(
             "localhost:8082/reservas/estado",
@@ -18,8 +27,14 @@ const pagosSet = (pago) => {  // 4/11/2022 se esta trabajando en forma d memoria
             console.log("Reserva confirmada")
         )
     }
-    pagos.push(pago)      // debería estar lo nuevo al final de la cola por el push
-    return pagos
+    await collection.insertOne(pago).then(       //3. 10/11  await getMongo.closeClientExport(client) 
+        (resp) => {
+            console.log(resp)
+            console.log("Pago REgistrado")
+        }
+    )
+    await getMongo.closeClientExport(client)      
+    return pago
 }
 
 const pagosDelete = (id) => {

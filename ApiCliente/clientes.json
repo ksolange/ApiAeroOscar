@@ -1,18 +1,18 @@
 [
     {
-        "id":"01",
+        "_id":"01",
         "nombre":"persona1"
     },
     {
-        "id":"02",
+        "_id":"02",
         "nombre":"persona2"
     },
     {
-        "id":"03",
+        "_id":"03",
         "nombre":"persona3"
     },
     {
-        "id":"04",
+        "_id":"04",
         "nombre":"persona4"
     }
 ]

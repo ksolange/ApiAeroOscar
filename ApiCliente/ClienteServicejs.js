@@ -1,4 +1,6 @@
-const getMongo = require("./mongodb.js") //1. 09/11/2022
+// simula los datos
+
+let clientes = require("./clientes.json")
 
 const clientesGet = () => {
     
@@ -21,19 +23,14 @@ const clientesDelete = (id) => {
     return clientes
 }
 
-const clientesgetId = async (id) => {  // 08/11/2022 se crea para poder llamarle d forma parálela
-    const nameDb = "aerolineaG1y2"
-    const client =  await getMongo.getClientExport(nameDb) // 6. se debe colocar un async y trae al cliente como tal  09/11 
-    const collection = await getMongo.getCollectionExport(client,nameDb) // 6. se debe colocar await  09/11
-    var clienteEncontrado = null
-    await collection.findOne({"_id":id}).then(
+const clientesgetId = (id) => {  // 08/11/2022 se crea para poder llamarle d forma parálela
+    let cliente = clientes.find(
         (client) => { // si lo quermos hacer d una sola línea sería sin el return ... client.id === id
-            clienteEncontrado = client
+            return client.id === id
         }
     ) // busco cliente por medio del .find 
 
-    await getMongo.closeClientExport(client)    // 7.no olvidar cerrar conexión
-    return clienteEncontrado
+    return cliente
 }
 
 module.exports.clientesgetExport = clientesGet;         //exportar
