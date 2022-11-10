@@ -13,11 +13,11 @@ app.use(body_parser.json())// usar body-parse con cualquier dato json q llegue
 
 const pathName = "/pagos";
 
-app.get(pathName,        // función .get con asyn y await 10/11
-    async (req, res) => {
+app.get(pathName,        // función .get
+    (req, res) => {
         console.log("Recibimos petición") 
-        console.log(req.query.idclient) // 2. 10/11
-        res.send(await pagosService.pagosgetExport(req.query.idclient)) //3- 10/11
+        console.log(req)
+        res.send(pagosService.pagosgetExport()) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export pagosService.pagosgetExport 04/11/2022
     }
 )
 

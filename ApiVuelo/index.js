@@ -14,20 +14,21 @@ app.use(body_parser.json())// usar body-parse con cualquier dato json q llegue
 const pathName = "/vuelos";
 
 app.get(pathName,        // función .get
-    (req, res) => {
+    async (req, res) => {     // 09/11 para poder obtener los datos del vuelosservice colocar async para q funcione el await
         console.log("Recibimos petición") 
         console.log(req)
-        res.send(vuelosService.vuelosgetExport()) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
+        res.send(await vuelosService.vuelosgetExport()) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
+        // 1er await del index 09/11 para poder obtener los datos del vuelosservice
     }
 )
 
 // función .get/id 05/11/2022
 app.get(pathName + "/id",
-    (req, res) => {
+    async (req, res) => {
         console.log("Recibimos petición") 
-        let id = req.query.id
+        const id = req.query.id
         console.log(id)
-        res.send(vuelosService.vuelosgetidExport(req.query.id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
+        res.send(await vuelosService.vuelosgetidExport(id)) //respuesta q permite no quedarse en un bucle, q finalice todo se coloca el nuevo export vuelosService.vuelosgetExport 04/11/2022
     }
 )
 
@@ -35,7 +36,7 @@ app.get(pathName + "/id",
 
 // función .post 04/11/2022 00:17:29 
 app.post(pathName,
-    (req, res) => {
+    async (req, res) => {     // 5. se debe colocar un async  09/11
         console.log("Recibimos petición") 
         console.log(req.body) // ya no viene vacío con ese req. viene enriquecido del body
         let vuelos = vuelosService.vuelosSetExport(req.body) // 2. llamado a la funcion setExportvuelosService.SetExport le envío request body 
@@ -63,12 +64,12 @@ app.patch(pathName,
     }
 )
 
-app.patch(pathName + "sillas", // 08/11
-    (req, res) => {
+app.patch(pathName + "/sillas", // 08/11
+    async(req, res) => { //async 10/11
         console.log("reserva sillas")
         console.log(req.body)
         id = req.query.id
-        res.send(vuelosService.sillasReservadasExport(req.body,id))
+        res.send(await vuelosService.sillasReservadasExport(req.body,id)) //await 10/11
     }
 )
 

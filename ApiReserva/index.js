@@ -30,6 +30,15 @@ app.get(pathName + "/pendientes/idcliente",       // función .get 08//11 pendie
     }
 )
 
+app.get(pathName + "/reservascanceladas",       // función .get 10/11 canceladas
+    async (req, res) => {
+        console.log("Recibimos petición") 
+        console.log(req)
+        res.send(await reservasService.reservasACancelarExport())
+    }
+)
+
+
 // función .post 04/11/2022 00:17:29 
 app.post(pathName,  
     async (req, res) => {

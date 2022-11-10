@@ -75,7 +75,7 @@ ____________-clase 08/11/2022
 2. reserva apunta a cliente para sacar d allí la info.
 3. reserva vuelve apuntar a vuelo para disminuir los asientos.
 microservicios parálelo, con la finalidad de bajar tiempo (ej d 8 a 3 seg para q se haga las peticiones al mismo tiempo), ya q si lo hacemos en orden se acumula mucho es el tiempo de procesar las solicitudes o peticiones (fueron las q hicimos el día sabádo con get)
-    - 1. librería axios: para ello debo tener la url q se obtuvo en el archivo reservasService.js en el const reservasSet en el await request.get, pero debo tener las otras dos urls q faltan
+    - 1. librería axios: 1ro descargarle en la apiReservas para ello debo tener la url q se obtuvo en el archivo reservasService.js en el const reservasSet en el await request.get, pero debo tener las otras dos urls q faltan
 precio: transacciones (q son los pagos) |||| pagos restantes ---> son el carrito  q no han finalizado la compra (la transcacción se crea cuando esta en el carrito en estado pendiente, listado d quién falta por pagar SE DEBE TRAER UNA LSITA DEL ESTADO PENDIENTE(puede hacerse desde el get --> app.get(pacthName  de en el ejemplo Oscar d ApiReservas) este get también puede traer la lista filtrados por id para saber quién falta por pagar en staging (en estado d memoria en el carrito)))
 
 
@@ -87,3 +87,21 @@ node ./ApiCliente/index.js &
 node ./ApiPago/index.js &
 node ./ApiReserva/index.js &
 node ./ApiVuelo/index.js &
+
+
+
+______clase 09/11/2022
+
+junto Mongodb con Aerolínea1y2
+1. en ApiVuelo creo nuevo archivo y allí instalar la librería d Mongodb
+2. modificar vueloService.js para crear la conexión con Mongodb.js 
+3. ir a mongo atlas en create database crear database con nombre aerolineaG1y2 y collection name vuelos
+4. ir a vuelos en el atlas y dar insert document
+5. copiar datos del json de apivuelos y llevar al mongo atlas
+6. cambiar en la bd local en visual el id por _id porq mongo trabaja así los ids
+7. en APiVuelo instalar mongodb npm i mongodb
+
+
+
+________--clase 10/11
+modifica vueloService, reservasService, index apivuelo, index apireserva, apipago se crea el monngodb
